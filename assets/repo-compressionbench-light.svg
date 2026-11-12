@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="330" viewBox="0 0 600 330" role="img" aria-label="CompressionBench: Coding agents compress LLM checkpoints under a storage budget: quantize, prune, factorize, distill. Judged once.">
+<title>CompressionBench: Coding agents compress LLM checkpoints under a storage budget: quantize, prune, factorize, distill. Judged once.</title>
+<style>
+.sans{font-family:Geist, Inter, ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif} .mono{font-family:'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.25}}
+@keyframes cyc{0%,30%{opacity:1}34%,100%{opacity:0}}
+@keyframes draw{0%{stroke-dashoffset:1}55%,100%{stroke-dashoffset:0}}
+@keyframes fill{0%,40%{opacity:0}60%,100%{opacity:1}}
+@keyframes pop{0%,52%{opacity:0}60%,100%{opacity:1}}
+.pulse{animation:pulse 2.2s ease-in-out infinite}
+.f{opacity:0;animation:cyc 6s linear infinite} .f1{opacity:1} .f2{animation-delay:2s} .f3{animation-delay:4s}
+.draw{stroke-dasharray:1;stroke-dashoffset:0;animation:draw 6s ease-out infinite}
+.area{animation:fill 6s ease-out infinite} .pop{animation:pop 6s ease-out infinite}
+@keyframes blink{0%,49%{opacity:1}50%,100%{opacity:0}}
+@keyframes grow{0%,15%{transform:scaleX(.25)}60%,100%{transform:scaleX(1)}}
+@keyframes shrink{0%,15%{transform:scaleX(1)}60%,100%{transform:scaleX(.36)}}
+@keyframes flow{to{stroke-dashoffset:-20}}
+.caret{animation:blink 1.1s step-end infinite}
+.grow{transform-box:fill-box;transform-origin:left center;animation:grow 6s ease-in-out infinite alternate}
+.shrink{transform-box:fill-box;transform-origin:left center;animation:shrink 6s ease-in-out infinite alternate}
+.flow{stroke-dasharray:5 5;animation:flow 1.2s linear infinite}
+@media (prefers-reduced-motion:reduce){*{animation:none!important}}
+</style>
+<defs><pattern id="dots" width="16" height="16" patternUnits="userSpaceOnUse"><circle cx="8" cy="8" r="1" fill="rgba(10,10,10,0.09)"/></pattern></defs>
+
+<rect x="0.5" y="0.5" width="599" height="329" rx="16" fill="#ffffff" stroke="#2450e6" stroke-opacity="0.55"/>
+<path d="M30 30h11a3 3 0 0 1 3 3v16H33a3 3 0 0 0-3 3z M30 30v22" fill="none" stroke="#8f8f8f" stroke-width="1.6" stroke-linejoin="round"/>
+<text class="mono" x="54" y="45" font-size="14" fill="#8f8f8f">Infini-AI-Lab/Compression-Bench</text>
+<text class="sans" x="28" y="90" font-size="32" font-weight="700" letter-spacing="-1" fill="#0a0a0a">CompressionBench</text>
+<rect x="437" y="26" width="135" height="26" rx="13" fill="#eef2ff" stroke="#2450e6" stroke-opacity="0.55"/>
+<text class="mono" x="504" y="43.5" font-size="13" text-anchor="middle" fill="#2450e6">lead developer</text>
+<text class="sans" font-size="17" fill="#4d4d4d"><tspan x="28" y="124">Coding agents compress LLM checkpoints under a storage</tspan><tspan x="28" y="148">budget: quantize, prune, factorize, distill. Judged once.</tspan></text>
+<rect x="28" y="170" width="544" height="92" rx="10" fill="#fafafa" stroke="#ebebeb"/>
+<rect x="29" y="171" width="542" height="90" rx="9" fill="url(#dots)"/>
+<text class="mono" x="42" y="190" font-size="11" fill="#8f8f8f">BF16 checkpoint</text><g class="shrink"><rect x="58" y="204" width="484" height="24" rx="6" fill="#e3e3e3"/><rect x="58" y="204" width="218" height="24" rx="6" fill="#2450e6" fill-opacity="0.85"/><rect x="276" y="204" width="145" height="24" fill="#2450e6" fill-opacity="0.5"/><rect x="421" y="204" width="121" height="24" rx="6" fill="#2450e6" fill-opacity="0.25"/></g><line x1="252" y1="180" x2="252" y2="238" stroke="#0a0a0a" stroke-dasharray="4 3"/><text class="mono" x="258" y="190" font-size="11" fill="#0a0a0a">budget</text>
+<text class="mono" x="28" y="282" font-size="12" fill="#8f8f8f">Qwen · Gemma · 8–32 GiB budgets</text>
+<text class="mono" x="572" y="282" font-size="12" font-weight="600" text-anchor="end" fill="#2450e6">hidden verifier, after the deadline</text>
+<line x1="28" y1="290" x2="572" y2="290" stroke="#ebebeb"/>
+<text class="mono" x="28" y="314" font-size="12.5" fill="#8f8f8f">quantization · pruning · agents · benchmark</text>
+<circle cx="514" cy="310" r="5.5" fill="#3572A5"/><text class="sans" x="524" y="314.5" font-size="13.5" fill="#4d4d4d">Python</text>
+</svg>

@@ -26,6 +26,14 @@ BASE_CSS = """
 .f{{opacity:0;animation:cyc 6s linear infinite}} .f1{{opacity:1}} .f2{{animation-delay:2s}} .f3{{animation-delay:4s}}
 .draw{{stroke-dasharray:1;stroke-dashoffset:0;animation:draw 6s ease-out infinite}}
 .area{{animation:fill 6s ease-out infinite}} .pop{{animation:pop 6s ease-out infinite}}
+@keyframes blink{{0%,49%{{opacity:1}}50%,100%{{opacity:0}}}}
+@keyframes grow{{0%,15%{{transform:scaleX(.25)}}60%,100%{{transform:scaleX(1)}}}}
+@keyframes shrink{{0%,15%{{transform:scaleX(1)}}60%,100%{{transform:scaleX(.36)}}}}
+@keyframes flow{{to{{stroke-dashoffset:-20}}}}
+.caret{{animation:blink 1.1s step-end infinite}}
+.grow{{transform-box:fill-box;transform-origin:left center;animation:grow 6s ease-in-out infinite alternate}}
+.shrink{{transform-box:fill-box;transform-origin:left center;animation:shrink 6s ease-in-out infinite alternate}}
+.flow{{stroke-dasharray:5 5;animation:flow 1.2s linear infinite}}
 @media (prefers-reduced-motion:reduce){{*{{animation:none!important}}}}
 """
 
@@ -75,12 +83,16 @@ def hero(c):
 
     # right: window
     X, Y, WW, WH = 688, 38, 472, 324
+    s.append(f'<defs><radialGradient id="glow" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="{c["accent"]}" stop-opacity="0.16"/>'
+             f'<stop offset="1" stop-color="{c["accent"]}" stop-opacity="0"/></radialGradient></defs>')
+    s.append(f'<ellipse cx="{X+WW/2}" cy="{Y+WH/2}" rx="330" ry="210" fill="url(#glow)"/>')
     s.append(f'<rect x="{X}" y="{Y}" width="{WW}" height="{WH}" rx="14" fill="{c["surface"]}" stroke="{c["line"]}"/>')
     s.append(f'<path d="M{X} {Y+36}V{Y+14}a14 14 0 0 1 14-14H{X+WW-14}a14 14 0 0 1 14 14V{Y+36}z" fill="{c["surface2"]}"/>')
     s.append(f'<line x1="{X}" y1="{Y+36}" x2="{X+WW}" y2="{Y+36}" stroke="{c["line"]}"/>')
     for k in range(3):
         s.append(f'<circle cx="{X+20+16*k}" cy="{Y+18}" r="5" fill="{c["line2"]}"/>')
     s.append(f'<text class="mono" x="{X+72}" y="{Y+22}" font-size="12" fill="{c["ink3"]}">~/research/efficient-ai × rsi</text>')
+    s.append(f'<rect class="caret" x="{X+72+29*7.25}" y="{Y+11}" width="7" height="14" rx="1" fill="{c["accent"]}"/>')
     s.append(f'<rect x="{X+WW-58}" y="{Y+8}" width="46" height="20" rx="10" fill="none" stroke="{c["green"]}" stroke-opacity="0.45"/>')
     s.append(f'<circle class="pulse" cx="{X+WW-47}" cy="{Y+18}" r="3" fill="{c["green"]}"/>')
     s.append(f'<text class="mono" x="{X+WW-39}" y="{Y+22}" font-size="11" fill="{c["green"]}">live</text>')
@@ -221,7 +233,112 @@ def research(c):
     return "\n".join(s)
 
 
+REPOS = [
+    dict(key="serverbench", owner="Infini-AI-Lab/Server-Bench", name="ServerBench", role="lead developer", lead=True,
+         desc=["Coding agents evolve a minimal server into a specialized",
+               "LLM serving system, graded by a verifier they never see."],
+         left="replayed sessions · hidden verifier", right="best agent-built: 4.87× vLLM",
+         tags="llm serving · agents · harbor · benchmark", viz="server"),
+    dict(key="compressionbench", owner="Infini-AI-Lab/Compression-Bench", name="CompressionBench", role="lead developer", lead=True,
+         desc=["Coding agents compress LLM checkpoints under a storage",
+               "budget: quantize, prune, factorize, distill. Judged once."],
+         left="Qwen · Gemma · 8–32 GiB budgets", right="hidden verifier, after the deadline",
+         tags="quantization · pruning · agents · benchmark", viz="compress"),
+    dict(key="vortex", owner="Infini-AI-Lab/vortex_torch", name="Vortex", role="co-developer", lead=False,
+         desc=["Programmable sparse attention, with agents as algorithm",
+               "designers. PyTorch-like frontend on SGLang + FlashInfer."],
+         left="vFlow DSL · vTensor · radix top-k", right="up to 3.46× vs full attention",
+         tags="python · cuda · sglang · flashinfer", viz="pages"),
+    dict(key="ltsm", owner="datamllab/ltsm", name="LTSM-Bundle", role="contributor", lead=False,
+         desc=["A toolbox and benchmark for training large language",
+               "models on time-series forecasting."],
+         left="history → forecast", right="training + evaluation pipeline",
+         tags="time series · llm · benchmark", viz="series"),
+]
+
+
+def repo_viz(kind, x0, y0, w, h, c):
+    o = []
+    if kind == "pages":  # paged KV cache, sparse read plan changes per step
+        n, bw, g = 16, 26, 6
+        sx = x0 + (w - (n * bw + (n - 1) * g)) / 2
+        o.append(f'<text class="mono" x="{x0+14}" y="{y0+20}" font-size="11" fill="{c["ink3"]}">paged KV cache → sparse read plan</text>')
+        for k in range(n):
+            o.append(f'<rect x="{sx+k*(bw+g):.1f}" y="{y0+34}" width="{bw}" height="26" rx="5" fill="{c["t2"]}" stroke="{c["line2"]}"/>')
+        for f, pick in enumerate([(0, 3, 7, 12, 15), (0, 5, 9, 10, 15), (0, 2, 6, 13, 15)], 1):
+            o.append(f'<g class="f f{f}">' + "".join(
+                f'<rect x="{sx+k*(bw+g):.1f}" y="{y0+34}" width="{bw}" height="26" rx="5" fill="{c["accent"]}"/>' for k in pick) + '</g>')
+    elif kind == "server":  # minimal server -> agent -> specialized server
+        cy = y0 + 46
+        o.append(f'<rect x="{x0+18}" y="{cy-18}" width="120" height="36" rx="8" fill="{c["surface"]}" stroke="{c["line2"]}"/>')
+        o.append(f'<text class="mono" x="{x0+78}" y="{cy+4}" font-size="11.5" text-anchor="middle" fill="{c["ink2"]}">minimal server</text>')
+        o.append(f'<line class="flow" x1="{x0+144}" y1="{cy}" x2="{x0+214}" y2="{cy}" stroke="{c["accent"]}" stroke-width="2"/>')
+        hx = x0 + 252
+        o.append(f'<path d="M{hx-22} {cy-20}h44l14 20-14 20h-44l-14-20z" fill="{c["soft"]}" stroke="{c["accent"]}" stroke-width="1.5" stroke-linejoin="round"/>')
+        o.append(f'<text class="mono" x="{hx}" y="{cy+4}" font-size="11" letter-spacing="1.5" text-anchor="middle" fill="{c["accent"]}">AGENT</text>')
+        o.append(f'<line class="flow" x1="{hx+42}" y1="{cy}" x2="{hx+112}" y2="{cy}" stroke="{c["accent"]}" stroke-width="2"/>')
+        bx = hx + 120
+        o.append(f'<rect x="{bx}" y="{cy-26}" width="{x0+w-18-bx}" height="52" rx="8" fill="{c["surface"]}" stroke="{c["accent"]}" stroke-opacity="0.6"/>')
+        for k, frac in enumerate([0.55, 0.8, 1.0]):
+            o.append(f'<rect class="grow" style="animation-delay:{k*0.25}s" x="{bx+12}" y="{cy-17+k*13}" '
+                     f'width="{(x0+w-18-bx-24)*frac:.0f}" height="8" rx="3" fill="{c["accent"]}" fill-opacity="{0.45+0.25*k}"/>')
+    elif kind == "compress":  # BF16 checkpoint shrinks under the budget line
+        cy = y0 + 46
+        full = w - 60
+        o.append(f'<text class="mono" x="{x0+14}" y="{y0+20}" font-size="11" fill="{c["ink3"]}">BF16 checkpoint</text>')
+        o.append(f'<g class="shrink"><rect x="{x0+30}" y="{cy-12}" width="{full}" height="24" rx="6" fill="{c["t3"]}"/>'
+                 f'<rect x="{x0+30}" y="{cy-12}" width="{full*0.45:.0f}" height="24" rx="6" fill="{c["accent"]}" fill-opacity="0.85"/>'
+                 f'<rect x="{x0+30+full*0.45:.0f}" y="{cy-12}" width="{full*0.3:.0f}" height="24" fill="{c["accent"]}" fill-opacity="0.5"/>'
+                 f'<rect x="{x0+30+full*0.75:.0f}" y="{cy-12}" width="{full*0.25:.0f}" height="24" rx="6" fill="{c["accent"]}" fill-opacity="0.25"/></g>')
+        bxl = x0 + 30 + full * 0.4
+        o.append(f'<line x1="{bxl:.0f}" y1="{y0+10}" x2="{bxl:.0f}" y2="{cy+22}" stroke="{c["ink"]}" stroke-dasharray="4 3"/>')
+        o.append(f'<text class="mono" x="{bxl+6:.0f}" y="{y0+20}" font-size="11" fill="{c["ink"]}">budget</text>')
+    else:  # time series with forecast
+        pts = [0.55, 0.42, 0.6, 0.48, 0.66, 0.52, 0.7, 0.58, 0.74, 0.6, 0.78]
+        fc = [0.66, 0.82, 0.7, 0.86, 0.74]
+        step = (w - 40) / (len(pts) - 1 + len(fc))
+        yy = lambda v: y0 + h - 14 - v * (h - 34)
+        hist = " ".join(f"{x0+20+i*step:.1f},{yy(v):.1f}" for i, v in enumerate(pts))
+        fore = " ".join(f"{x0+20+(len(pts)-1+i)*step:.1f},{yy(v):.1f}" for i, v in enumerate([pts[-1]] + fc))
+        o.append(f'<polyline points="{hist}" fill="none" stroke="{c["ink2"]}" stroke-width="2" stroke-linejoin="round"/>')
+        o.append(f'<polyline class="draw" pathLength="1" points="{fore}" fill="none" stroke="{c["accent"]}" stroke-width="2.2" stroke-dasharray="1" stroke-linejoin="round"/>')
+        o.append(f'<line x1="{x0+20+(len(pts)-1)*step:.1f}" y1="{y0+8}" x2="{x0+20+(len(pts)-1)*step:.1f}" y2="{y0+h-8}" stroke="{c["line2"]}" stroke-dasharray="3 3"/>')
+    return "".join(o)
+
+
+def repo_card(c, r):
+    W, H = 600, 330
+    s = [svg_open(W, H, f"{r['name']}: {' '.join(r['desc'])}", c)]
+    s.append(f'<rect x="0.5" y="0.5" width="{W-1}" height="{H-1}" rx="16" fill="{c["surface"]}" '
+             f'stroke="{c["accent"] if r["lead"] else c["line"]}" stroke-opacity="{0.55 if r["lead"] else 1}"/>')
+    # repo icon + slug
+    s.append(f'<path d="M30 30h11a3 3 0 0 1 3 3v16H33a3 3 0 0 0-3 3z M30 30v22" fill="none" stroke="{c["ink3"]}" stroke-width="1.6" stroke-linejoin="round"/>')
+    s.append(f'<text class="mono" x="54" y="45" font-size="14" fill="{c["ink3"]}">{esc(r["owner"])}</text>')
+    s.append(f'<text class="sans" x="28" y="90" font-size="32" font-weight="700" letter-spacing="-1" fill="{c["ink"]}">{esc(r["name"])}</text>')
+    pw = len(r["role"]) * 7.8 + 26
+    fill, stroke, ink = (c["soft"], c["accent"], c["accent"]) if r["lead"] else (c["surface2"], c["line2"], c["ink2"])
+    s.append(f'<rect x="{W-28-pw:.0f}" y="26" width="{pw:.0f}" height="26" rx="13" fill="{fill}" stroke="{stroke}" stroke-opacity="{0.55 if r["lead"] else 1}"/>')
+    s.append(f'<text class="mono" x="{W-28-pw/2:.0f}" y="43.5" font-size="13" text-anchor="middle" fill="{ink}">{r["role"]}</text>')
+    s.append(f'<text class="sans" font-size="17" fill="{c["ink2"]}">' + "".join(
+        f'<tspan x="28" y="{124+24*i}">{esc(line)}</tspan>' for i, line in enumerate(r["desc"])) + '</text>')
+    # visual band
+    bx, by, bw, bh = 28, 170, W - 56, 92
+    s.append(f'<rect x="{bx}" y="{by}" width="{bw}" height="{bh}" rx="10" fill="{c["surface2"]}" stroke="{c["line"]}"/>')
+    s.append(f'<rect x="{bx+1}" y="{by+1}" width="{bw-2}" height="{bh-2}" rx="9" fill="url(#dots)"/>')
+    s.append(repo_viz(r["viz"], bx, by, bw, bh, c))
+    s.append(f'<text class="mono" x="{bx}" y="{by+bh+20}" font-size="12" fill="{c["ink3"]}">{esc(r["left"])}</text>')
+    s.append(f'<text class="mono" x="{bx+bw}" y="{by+bh+20}" font-size="12" font-weight="600" text-anchor="end" fill="{c["accent"]}">{esc(r["right"])}</text>')
+    s.append(f'<line x1="28" y1="{H-40}" x2="{W-28}" y2="{H-40}" stroke="{c["line"]}"/>')
+    s.append(f'<text class="mono" x="28" y="{H-16}" font-size="12.5" fill="{c["ink3"]}">{esc(r["tags"])}</text>')
+    s.append(f'<circle cx="{W-86}" cy="{H-20}" r="5.5" fill="#3572A5"/>'
+             f'<text class="sans" x="{W-76}" y="{H-15.5}" font-size="13.5" fill="{c["ink2"]}">Python</text>')
+    s.append('</svg>\n')
+    return "\n".join(s)
+
+
 for name, c in THEMES.items():
+    for r in REPOS:
+        open(f"{OUT}/repo-{r['key']}-{name}.svg", "w", encoding="utf-8").write(repo_card(c, r))
     open(f"{OUT}/hero-{name}.svg", "w", encoding="utf-8").write(hero(c))
     open(f"{OUT}/research-{name}.svg", "w", encoding="utf-8").write(research(c))
 print("ok")
