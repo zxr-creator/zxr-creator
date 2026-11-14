@@ -58,26 +58,26 @@ def sparse_frames(n=16):
 
 def hero(c):
     W, H = 1200, 400
-    s = [svg_open(W, H, "zxr-creator: efficient AI, ML systems, and recursive self-improvement", c)]
+    s = [svg_open(W, H, "zxr-creator: efficient AI, ML systems, recursive self-improvement, and verifiable systems", c)]
     s.append(f'<rect x="0.5" y="0.5" width="{W-1}" height="{H-1}" rx="18" fill="{c["bg"]}" stroke="{c["line"]}"/>')
 
     # left column
     s.append(f'<circle class="pulse" cx="64" cy="76" r="4" fill="{c["accent"]}"/>')
     s.append(f'<text class="mono" x="78" y="80.5" font-size="12.5" letter-spacing="2" fill="{c["ink3"]}">'
-             f'EFFICIENT AI · ML SYSTEMS · RECURSIVE SELF-IMPROVEMENT</text>')
+             f'EFFICIENT AI · ML SYSTEMS · RSI · VERIFIABLE SYSTEMS</text>')
     s.append(f'<text class="sans" x="58" y="156" font-size="64" font-weight="700" letter-spacing="-2.5" fill="{c["ink"]}">zxr-creator</text>')
     b = f'fill="{c["ink"]}" font-weight="600"'
     a = f'fill="{c["accent"]}" font-weight="600"'
     s.append(f'<text class="sans" font-size="19.5" fill="{c["ink2"]}">'
-             f'<tspan x="60" y="204">I make AI cheaper to run: <tspan {b}>efficient models</tspan>, the <tspan {b}>systems</tspan></tspan>'
-             f'<tspan x="60" y="233">that serve them on real GPUs, and <tspan {a}>AI agents</tspan> that build</tspan>'
-             f'<tspan x="60" y="262">and optimize those systems themselves.</tspan></text>')
-    chips = [("efficient model architecture", 60, 230, False), ("ml systems", 300, 100, False),
-             ("recursive self-improvement", 410, 214, True)]
-    for label, x, w, acc in chips:
+             f'<tspan x="60" y="204">I make AI more efficient and able to run at larger scale:</tspan>'
+             f'<tspan x="60" y="233"><tspan {b}>efficient models</tspan>, the <tspan {b}>systems</tspan> that serve them, and</tspan>'
+             f'<tspan x="60" y="262"><tspan {a}>AI agents</tspan> that build and optimize those systems.</tspan></text>')
+    chips = [("efficient model architecture", 60, 286, 230, False), ("ml systems", 300, 286, 100, False),
+             ("recursive self-improvement", 410, 286, 214, True), ("verifiable systems", 60, 322, 155, False)]
+    for label, x, cy, w, acc in chips:
         fill, stroke, ink = (c["soft"], c["accent"], c["accent"]) if acc else (c["surface2"], c["line2"], c["ink2"])
-        s.append(f'<rect x="{x}" y="286" width="{w}" height="26" rx="13" fill="{fill}" stroke="{stroke}" stroke-opacity="{0.55 if acc else 1}"/>')
-        s.append(f'<text class="mono" x="{x + w/2}" y="303.5" font-size="12" text-anchor="middle" fill="{ink}">{label}</text>')
+        s.append(f'<rect x="{x}" y="{cy}" width="{w}" height="26" rx="13" fill="{fill}" stroke="{stroke}" stroke-opacity="{0.55 if acc else 1}"/>')
+        s.append(f'<text class="mono" x="{x + w/2}" y="{cy + 17.5}" font-size="12" text-anchor="middle" fill="{ink}">{label}</text>')
 
     # right: window
     X, Y, WW, WH = 688, 38, 472, 324
@@ -160,12 +160,12 @@ CARDS = [
                "and redundancy-aware parallel decoding for",
                "diffusion language models."],
          metric="5.53×", m1="faster sparse attention", m2="at 128K context · RISA", tags="RISA · R²-dLLM · Vortex", icon="mask"),
-    dict(num="02", kicker="conventional ml systems", title="Make it fast on real GPUs",
-         body=["Classic systems work: serving engines,",
-               "sequence parallelism, SLO-aware GPU",
-               "scheduling and inference pipelines for LLMs",
-               "and diffusion models, built and measured",
-               "on real clusters, from H200s to PCIe GPUs."],
+    dict(num="02", kicker="ml systems", title="Make it fast on real GPUs",
+         body=["Serving engines, sequence parallelism,",
+               "SLO-aware GPU scheduling and inference",
+               "pipelines for LLMs and diffusion models,",
+               "built and measured on real clusters,",
+               "from H200s down to PCIe GPUs."],
          metric="3.46×", m1="serving throughput", m2="vs. full attention · Vortex", tags="Vortex · GenServe · SparSP · QRMark", icon="gpu"),
     dict(num="03", kicker="recursive self-improvement", title="Let agents build the system",
          body=["Agents that do systems work themselves:",
@@ -200,7 +200,7 @@ def icon(kind, x, y, c):
 
 def research(c):
     W, H = 1200, 344
-    s = [svg_open(W, H, "Research areas: efficient model architecture, conventional ML systems, recursive self-improvement", c)]
+    s = [svg_open(W, H, "Research areas: efficient model architecture, ML systems, recursive self-improvement", c)]
     # brackets
     def bracket(x0, x1, label):
         mid = (x0 + x1) / 2

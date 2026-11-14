@@ -1,6 +1,6 @@
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/hero-dark.svg">
-  <img src="assets/hero-light.svg" width="100%" alt="zxr-creator: efficient AI, ML systems, and recursive self-improvement">
+  <img src="assets/hero-light.svg" width="100%" alt="zxr-creator: efficient AI, ML systems, recursive self-improvement, and verifiable systems">
 </picture>
 
 <p align="center">
@@ -9,7 +9,11 @@
   <a href="https://zxr-creator.github.io/#contact"><img alt="Email" src="https://img.shields.io/badge/Email-2450e6?style=for-the-badge&logo=gmail&logoColor=white"></a>
 </p>
 
-I build efficient models, the systems that serve them on real GPUs, and open benchmarks that test whether coding agents can do that engineering themselves. Most of it is open source.
+I work on both research and engineering: making AI more efficient and able to run at larger scale. Most of what I build is open source.
+
+**Research interests:** efficient model architecture · ML systems · recursive self-improvement · verifiable systems
+
+I'm open to side projects and always open to research collaboration.
 
 <h3 align="center">Open source</h3>
 
@@ -31,7 +35,7 @@ I build efficient models, the systems that serve them on real GPUs, and open ben
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/research-dark.svg">
-  <img src="assets/research-light.svg" width="100%" alt="Research areas: efficient model architecture (RISA, 5.53x faster sparse attention at 128K); conventional ML systems (Vortex, 3.46x serving throughput); recursive self-improvement (ServerBench, agent-built server at 4.87x the vLLM reference)">
+  <img src="assets/research-light.svg" width="100%" alt="Research areas: efficient model architecture (RISA, 5.53x faster sparse attention at 128K); ML systems (Vortex, 3.46x serving throughput); recursive self-improvement (ServerBench, agent-built server at 4.87x the vLLM reference)">
 </picture>
 
 <p align="center">Papers and preprints are on <a href="https://scholar.google.com/citations?user=-AMCkEIAAAAJ&hl=en">Google Scholar</a>.</p>

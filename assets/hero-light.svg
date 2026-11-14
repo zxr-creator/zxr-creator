@@ -1,5 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="400" viewBox="0 0 1200 400" role="img" aria-label="zxr-creator: efficient AI, ML systems, and recursive self-improvement">
-<title>zxr-creator: efficient AI, ML systems, and recursive self-improvement</title>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="400" viewBox="0 0 1200 400" role="img" aria-label="zxr-creator: efficient AI, ML systems, recursive self-improvement, and verifiable systems">
+<title>zxr-creator: efficient AI, ML systems, recursive self-improvement, and verifiable systems</title>
 <style>
 .sans{font-family:Geist, Inter, ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif} .mono{font-family:'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.25}}
@@ -25,15 +25,17 @@
 
 <rect x="0.5" y="0.5" width="1199" height="399" rx="18" fill="#ffffff" stroke="#ebebeb"/>
 <circle class="pulse" cx="64" cy="76" r="4" fill="#2450e6"/>
-<text class="mono" x="78" y="80.5" font-size="12.5" letter-spacing="2" fill="#8f8f8f">EFFICIENT AI · ML SYSTEMS · RECURSIVE SELF-IMPROVEMENT</text>
+<text class="mono" x="78" y="80.5" font-size="12.5" letter-spacing="2" fill="#8f8f8f">EFFICIENT AI · ML SYSTEMS · RSI · VERIFIABLE SYSTEMS</text>
 <text class="sans" x="58" y="156" font-size="64" font-weight="700" letter-spacing="-2.5" fill="#0a0a0a">zxr-creator</text>
-<text class="sans" font-size="19.5" fill="#4d4d4d"><tspan x="60" y="204">I make AI cheaper to run: <tspan fill="#0a0a0a" font-weight="600">efficient models</tspan>, the <tspan fill="#0a0a0a" font-weight="600">systems</tspan></tspan><tspan x="60" y="233">that serve them on real GPUs, and <tspan fill="#2450e6" font-weight="600">AI agents</tspan> that build</tspan><tspan x="60" y="262">and optimize those systems themselves.</tspan></text>
+<text class="sans" font-size="19.5" fill="#4d4d4d"><tspan x="60" y="204">I make AI more efficient and able to run at larger scale:</tspan><tspan x="60" y="233"><tspan fill="#0a0a0a" font-weight="600">efficient models</tspan>, the <tspan fill="#0a0a0a" font-weight="600">systems</tspan> that serve them, and</tspan><tspan x="60" y="262"><tspan fill="#2450e6" font-weight="600">AI agents</tspan> that build and optimize those systems.</tspan></text>
 <rect x="60" y="286" width="230" height="26" rx="13" fill="#fafafa" stroke="#d9d9d9" stroke-opacity="1"/>
 <text class="mono" x="175.0" y="303.5" font-size="12" text-anchor="middle" fill="#4d4d4d">efficient model architecture</text>
 <rect x="300" y="286" width="100" height="26" rx="13" fill="#fafafa" stroke="#d9d9d9" stroke-opacity="1"/>
 <text class="mono" x="350.0" y="303.5" font-size="12" text-anchor="middle" fill="#4d4d4d">ml systems</text>
 <rect x="410" y="286" width="214" height="26" rx="13" fill="#eef2ff" stroke="#2450e6" stroke-opacity="0.55"/>
 <text class="mono" x="517.0" y="303.5" font-size="12" text-anchor="middle" fill="#2450e6">recursive self-improvement</text>
+<rect x="60" y="322" width="155" height="26" rx="13" fill="#fafafa" stroke="#d9d9d9" stroke-opacity="1"/>
+<text class="mono" x="137.5" y="339.5" font-size="12" text-anchor="middle" fill="#4d4d4d">verifiable systems</text>
 <defs><radialGradient id="glow" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#2450e6" stop-opacity="0.16"/><stop offset="1" stop-color="#2450e6" stop-opacity="0"/></radialGradient></defs>
 <ellipse cx="924.0" cy="200.0" rx="330" ry="210" fill="url(#glow)"/>
 <rect x="688" y="38" width="472" height="324" rx="14" fill="#ffffff" stroke="#ebebeb"/>
