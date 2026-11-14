@@ -78,8 +78,6 @@ def hero(c):
         fill, stroke, ink = (c["soft"], c["accent"], c["accent"]) if acc else (c["surface2"], c["line2"], c["ink2"])
         s.append(f'<rect x="{x}" y="286" width="{w}" height="26" rx="13" fill="{fill}" stroke="{stroke}" stroke-opacity="{0.55 if acc else 1}"/>')
         s.append(f'<text class="mono" x="{x + w/2}" y="303.5" font-size="12" text-anchor="middle" fill="{ink}">{label}</text>')
-    s.append(f'<text class="mono" x="60" y="352" font-size="12.5" fill="{c["ink3"]}">research intern · CMU InfiniAI Lab  ·  '
-             f'Rice University  ·  Pittsburgh, PA</text>')
 
     # right: window
     X, Y, WW, WH = 688, 38, 472, 324

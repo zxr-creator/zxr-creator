@@ -34,7 +34,6 @@
 <text class="mono" x="350.0" y="303.5" font-size="12" text-anchor="middle" fill="#a8b0ba">ml systems</text>
 <rect x="410" y="286" width="214" height="26" rx="13" fill="#121a33" stroke="#6f8cff" stroke-opacity="0.55"/>
 <text class="mono" x="517.0" y="303.5" font-size="12" text-anchor="middle" fill="#6f8cff">recursive self-improvement</text>
-<text class="mono" x="60" y="352" font-size="12.5" fill="#7d8590">research intern · CMU InfiniAI Lab  ·  Rice University  ·  Pittsburgh, PA</text>
 <defs><radialGradient id="glow" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#6f8cff" stop-opacity="0.16"/><stop offset="1" stop-color="#6f8cff" stop-opacity="0"/></radialGradient></defs>
 <ellipse cx="924.0" cy="200.0" rx="330" ry="210" fill="url(#glow)"/>
 <rect x="688" y="38" width="472" height="324" rx="14" fill="#0d1117" stroke="#21262d"/>
